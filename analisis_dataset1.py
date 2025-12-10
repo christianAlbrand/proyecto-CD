@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Cargar datos desde el CSV local
 df = pd.read_csv("heart.csv")
@@ -64,3 +65,36 @@ out_chol = outliers_iqr(df['chol'])
 
 print(f"Outliers en presión arterial: {len(out_bp)}")
 print(f"Outliers en colesterol: {len(out_chol)}")
+
+# =======================================================
+#                G  R  Á  F  I  C  A  S
+# =======================================================
+
+# 1. Histograma de edades
+plt.figure()
+df['age'].hist()
+plt.title("Histograma de edades")
+plt.xlabel("Edad")
+plt.ylabel("Frecuencia")
+plt.show()
+
+# 2. Boxplot de presión arterial
+plt.figure()
+plt.boxplot(df['trestbps'])
+plt.title("Boxplot de presión arterial")
+plt.ylabel("Presión arterial")
+plt.show()
+
+# 3. Boxplot de colesterol
+plt.figure()
+plt.boxplot(df['chol'])
+plt.title("Boxplot de colesterol")
+plt.ylabel("Colesterol")
+plt.show()
+
+# 4. Mapa de calor de correlaciones
+plt.figure()
+plt.imshow(corr, cmap='coolwarm')
+plt.colorbar()
+plt.title("Mapa de calor de correlaciones")
+plt.show()
